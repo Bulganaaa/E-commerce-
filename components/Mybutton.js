@@ -1,14 +1,18 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'; // Or any other icon library
 
-export default function MyButton({ title, onPress, style, textStyle, disabled }) {
+export default function MyButton({ title, onPress, style, textStyle, disabled, icon }) {
   return (
     <TouchableOpacity
       style={[styles.button, style, disabled && styles.disabledButton]}
       onPress={onPress}
       disabled={disabled}
     >
-      <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+      <View style={styles.content}>
+        {icon && <Icon name={icon} size={20} color="black" style={styles.icon} />}
+        <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -21,6 +25,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   disabledButton: {
     backgroundColor: '#a1a1a1',
@@ -29,5 +34,12 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     fontWeight: '600',
+  },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    marginRight: 8,
   },
 });

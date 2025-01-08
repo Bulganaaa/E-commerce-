@@ -5,12 +5,11 @@ import {
   StyleSheet, 
   TextInput, 
   TouchableWithoutFeedback, 
-  Keyboard, 
-  TouchableOpacity 
+  Keyboard 
 } from "react-native";
 import MyButton from '../components/Mybutton';
 
-export default function Login({ navigation }) {
+export default function Signin({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
@@ -19,46 +18,21 @@ export default function Login({ navigation }) {
           {/* Email Address Input */}
           <TextInput
             style={styles.input}
-            placeholder="Email Address"
+            placeholder="Password"
             placeholderTextColor={"#ddd"}
           />
           
           {/* Submit Button */}
           <MyButton
             title="Continue"
-            onPress={() => navigation.push("Signin")}
+            onPress={() => navigation.navigate("Home")}
             style={styles.button}
             textStyle={styles.buttonText}
           />
         </View>
         <View style={{marginTop: 20, flexDirection: "row", marginLeft: 20}}>
-          <Text>Don't have an Account?</Text>
-          <TouchableOpacity onPress={() => navigation.push("Signup")}>
-            <Text style={{fontWeight:'bold'}}> Create one</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ justifyContent: "center", alignItems: "center", marginTop: 70 }}>
-          <MyButton
-            title="Continue with Apple"
-            onPress={() => navigation.navigate("Home")}
-            style={styles.sidebutton}
-            textStyle={styles.sidebuttonText}
-            icon="apple"
-          />
-          <MyButton
-            title="Continue with Google"
-            onPress={() => navigation.navigate("Home")}
-            style={styles.sidebutton}
-            textStyle={styles.sidebuttonText}
-            icon="google"
-          />
-          <MyButton
-            title="Continue with Facebook"
-            onPress={() => navigation.navigate("Home")}
-            style={styles.sidebutton}
-            textStyle={styles.sidebuttonText}
-            icon="facebook"
-          />
+          <Text>Forgot password?</Text>
+          <Text style={{fontWeight:'bold'}} onPress={() => navigation.navigate("Signup")}> Reset</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -77,16 +51,6 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "bold",
     fontSize: 16,
-  },
-  sidebutton: {
-    backgroundColor: "#F4F4F4",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 40,
-    alignItems: "center",
-    marginTop: 10,
-    width: 344,
-    height: 49,
   },
   text: {
     marginTop: 70,
