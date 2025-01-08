@@ -1,16 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
-export default function About() {
-  const navigation = useNavigation();
+export default function About({navigation}) {
+//   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Text>Aboutscreen</Text>
+      <Text style={styles.text}>Aboutscreen</Text>
       <Button
         title="Go to Home"
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigation.navigate("Home")}
       />
     </View>
   );
@@ -23,4 +23,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  text: {
+    fontSize: 30,
+    fontWeight: "bold"
+  }
 });
