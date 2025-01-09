@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     text: {
-        marginTop: 70,
+        marginTop: 100,
         marginLeft: 20,
         marginBottom: 20,
         fontSize: 32,
@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
     input: {
         height: 50,
         margin: 12,
-        borderWidth: 1,
+        backgroundColor: '#F4F4F4',
         padding: 10,
         width: '90%',
-        borderColor: '#ddd',
         borderRadius: 5,
+        color: 'black',
     },
     button: {
         marginTop: 20,

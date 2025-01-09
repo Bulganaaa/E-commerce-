@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Or any other icon library
+import Icon from 'react-native-vector-icons/FontAwesome'; 
 
 export default function MyButton({ title, onPress, style, textStyle, disabled, icon }) {
   return (
