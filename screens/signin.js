@@ -25,14 +25,14 @@ export default function Signin({ navigation }) {
           {/* Submit Button */}
           <MyButton
             title="Continue"
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("About")}
             style={styles.button}
             textStyle={styles.buttonText}
           />
         </View>
         <View style={{marginTop: 20, flexDirection: "row", marginLeft: 20}}>
           <Text>Forgot password?</Text>
-          <Text style={{fontWeight:'bold'}} onPress={() => navigation.navigate("Signup")}> Reset</Text>
+          <Text style={{fontWeight:'bold'}} onPress={() => navigation.navigate("Forgot")}> Reset</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

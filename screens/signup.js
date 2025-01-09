@@ -20,7 +20,13 @@ export default function Signup({navigation}) {
           {/* Email Address Input */}
           <TextInput
             style={styles.input}
-            placeholder="Email Address"
+            placeholder="First Name"
+            placeholderTextColor={"#ddd"}
+          />
+                    {/* Email Address Input */}
+                    <TextInput
+            style={styles.input}
+            placeholder="Last Name"
             placeholderTextColor={"#ddd"}
           />
                     {/* Email Address Input */}
@@ -32,13 +38,7 @@ export default function Signup({navigation}) {
                     {/* Email Address Input */}
                     <TextInput
             style={styles.input}
-            placeholder="Email Address"
-            placeholderTextColor={"#ddd"}
-          />
-                    {/* Email Address Input */}
-                    <TextInput
-            style={styles.input}
-            placeholder="Email Address"
+            placeholder="Password"
             placeholderTextColor={"#ddd"}
           />
           </View>
@@ -83,9 +83,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },    
     customButton: {
-
-        borderRadius: 20,
+        borderRadius: 30,
         height: 49,
         width: 344,
+        backgroundColor: "#8E6CEF",
     },
 });
