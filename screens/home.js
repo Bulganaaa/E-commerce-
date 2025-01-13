@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Image, ScrollView, FlatList, Touchab
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Picker } from '@react-native-picker/picker';
 import Icono from 'react-native-vector-icons/Feather';
+import ProductCard from '../components/ProductCard'; // Ensure this import is correct
 
 export default function Home({ navigation }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -10,16 +11,16 @@ export default function Home({ navigation }) {
 
   const categories = [
     { id: '1', name: 'Hoodies', image: require('../assets/hoodie.jpg') },
-    { id: '2', name: 'Pants', image: require('../assets/pants.jpg') },
+    { id: '2', name: 'Shorts', image: require('../assets/pants.jpg') },
     { id: '3', name: 'Shoes', image: require('../assets/shoes.png') },
-    { id: '4', name: 'Bags', image: require('../assets/bags.jpg') },
+    { id: '4', name: 'Bag', image: require('../assets/bags.jpg') },
     { id: '5', name: 'Accessories', image: require('../assets/glasses.jpg') },
   ];
 
   const topSelling = [
-    { id: '1', name: 'Product 1', image: require('../assets/hoodie.jpg') },
-    { id: '2', name: 'Product 2', image: require('../assets/pants.jpg') },
-    { id: '3', name: 'Product 3', image: require('../assets/shoes.png') },
+    { id: '1', name: "Men's Harrington Jacket", price: '$148.00', image: require('../assets/hoodie.jpg') },
+    { id: '2', name: "Max Cirro Men's Slides", price: '$55.00', image: require('../assets/shoes.png') },
+    { id: '3', name: "Product 3", price: '$66.00', image: require('../assets/pants.jpg') },
   ];
 
   const newIn = [
@@ -38,6 +39,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
         <Image source={require('../assets/profile.jpg')} style={styles.profilePic} />
         <View style={styles.dropdownContainer}>
@@ -58,7 +60,8 @@ export default function Home({ navigation }) {
           </View>
         </TouchableOpacity>
       </View>
-      
+
+      {/* Search Bar */}
       <View style={styles.searchContainer}>
         <Icon name="search1" size={20} color="#000" style={styles.searchIcon} />
         <TextInput 
@@ -70,53 +73,53 @@ export default function Home({ navigation }) {
         />
       </View>
 
+      {/* Main Content */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.categories}>
-          <Text style={{fontSize:20, fontWeight: 'bold'}}>Categories</Text>
-          <Text>See All</Text>
+        {/* Categories */}
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Categories</Text>
+          <Text style={styles.sectionLink}>See All</Text>
         </View>
-        
-        {/* FlatList for Categories */}
         <FlatList 
           data={categories}
           horizontal
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.productItem} onPress={() => alert('Category clicked')}>
+            <TouchableOpacity style={styles.categoryItem}>
               <Image source={item.image} style={styles.categoryImage} />
               <Text style={styles.categoryName}>{item.name}</Text>
             </TouchableOpacity>
           )}
         />
 
-        <View style={styles.categories}>
-          <Text style={{fontSize:20, fontWeight: 'bold'}}>Top Selling</Text>
-          <Text>See All</Text>
+        {/* Top Selling */}
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Top Selling</Text>
+          <Text style={styles.sectionLink}>See All</Text>
         </View>
-        {/* FlatList for Top Selling Products */}
-        <FlatList 
+        <FlatList
           data={filterProducts(topSelling)}
           horizontal
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.productItem} onPress={() => alert('Product clicked')}>
-              <Image source={item.image} style={styles.productImage} />
-              <Text style={styles.productName}>{item.name}</Text>
-            </TouchableOpacity>
+            <ProductCard
+              product={item}
+              onPress={() => alert(`Clicked on ${item.name}`)}
+            />
           )}
         />
 
-<View style={styles.categories}>
-          <Text style={{fontSize:20, fontWeight: 'bold', color:"#8E6CEF" }}>New In</Text>
-          <Text>See All</Text>
+        {/* New In */}
+        <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle, { color: "#8E6CEF" }]}>New In</Text>
+          <Text style={styles.sectionLink}>See All</Text>
         </View>
-        {/* FlatList for New In Products */}
         <FlatList 
-          data={filterProducts(newIn)}
+          data={newIn}
           horizontal
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.productItem} onPress={() => alert('Product clicked')}>
+            <TouchableOpacity style={styles.productItem}>
               <Image source={item.image} style={styles.productImage} />
               <Text style={styles.productName}>{item.name}</Text>
             </TouchableOpacity>
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
   profilePic: {
     width: 40,
     height: 40,
-    borderRadius: 25,
+    borderRadius: 20,
   },
   dropdownContainer: {
     flexDirection: "row",
@@ -168,18 +171,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#8E6CEF',
     borderRadius: 25,
     padding: 10,
-    height:40,
-    width:40
+    height: 40,
+    width: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   searchContainer: {
-    marginLeft: 35,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F4F4F4',
     borderRadius: 30,
     paddingHorizontal: 10,
-    width: 342,
-    marginVertical: 20,
+    width: '90%',
     alignSelf: "center",
     position: "absolute",
     top: 100,
@@ -202,11 +205,33 @@ const styles = StyleSheet.create({
     paddingTop: 160,
     paddingHorizontal: 20,
   },
-  categories: {
-    marginTop: 20,
+  sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 10,
+    alignItems: "center",
+    marginVertical: 20,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  sectionLink: {
+    fontSize: 14,
+    color: "#8E6CEF",
+  },
+  categoryItem: {
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+  categoryImage: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+  },
+  categoryName: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 5,
   },
   productItem: {
     alignItems: 'center',
@@ -217,26 +242,14 @@ const styles = StyleSheet.create({
     height: 220,
     borderRadius: 10,
   },
-  categoryImage: {
-    width: 56,
-    height: 56,
-    borderRadius: 50,
-  },
   productName: {
     fontSize: 14,
     textAlign: 'center',
     marginTop: 5,
   },
-  categoryName: {
+  productPrice: {
     fontSize: 12,
-    textAlign: 'center',
+    color: "gray",
     marginTop: 5,
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 10,
-    marginTop: 20,
-    marginBottom: 15
   },
 });
