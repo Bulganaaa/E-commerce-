@@ -1,96 +1,99 @@
-import React from "react";
-import { View, Text, StyleSheet, Button, TextInput, Image } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Profile from './profile';
-import Notification from './notification';
-import Cart from './cart';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, Image, ScrollView, FlatList, TouchableOpacity } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
 
-const Tab = createBottomTabNavigator();
+export default function Home({ navigation }) {
 
-export default function Home() {
-  return (
-    <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarStyle: { backgroundColor: '#fff', height: 80 } }}>
-      <Tab.Screen 
-        name="HomeScreen" 
-        component={HomeScreen} 
-        options={{  
-          tabBarIcon: ({ focused }) => <Icon name="home" size={25} color={focused ? "#8E6CEF" : "#000"} />
-        }} 
-      />
-      <Tab.Screen 
-        name="Profile" 
-        component={Profile} 
-        options={{
-          tabBarIcon: ({ focused }) => <Icon name="user" size={25} color={focused ? "#8E6CEF" : "#000"} />
-        }} 
-      />
-      <Tab.Screen 
-        name="Notification" 
-        component={Notification} 
-        options={{
-          tabBarIcon: ({ focused }) => <Icon name="bells" size={25} color={focused ? "#8E6CEF" : "#000"} />
-        }} 
-      />
-      <Tab.Screen 
-        name="Cart" 
-        component={Cart} 
-        options={{
-          tabBarIcon: ({ focused }) => <Icon name="shoppingcart" size={25} color={focused ? "#8E6CEF" : "#000"} />
-        }} 
-      />
-    </Tab.Navigator>
-  );
-}
+  const [searchTerm, setSearchTerm] = useState('');
 
-function HomeScreen({ navigation }) {
+  const categories = [
+    { id: '1', name: 'Hoodies', image: require('../assets/hoodie.jpg') },
+    { id: '2', name: 'Pants', image: require('../assets/pants.jpg') },
+    { id: '3', name: 'Shoes', image: require('../assets/shoes.png') },
+    { id: '4', name: 'Bags', image: require('../assets/bags.jpg') },
+    { id: '5', name: 'Accessories', image: require('../assets/glasses.jpg') },
+  ];
+
+  const topSelling = [
+    { id: '1', name: 'Product 1', image: require('../assets/hoodie.jpg') },
+    { id: '2', name: 'Product 2', image: require('../assets/pants.jpg') },
+    { id: '3', name: 'Product 3', image: require('../assets/shoes.png') },
+  ];
+
+  const newIn = [
+    { id: '1', name: 'New Product 1', image: require('../assets/hoodie.jpg') },
+    { id: '2', name: 'New Product 2', image: require('../assets/pants.jpg') },
+    { id: '3', name: 'New Product 3', image: require('../assets/shoes.png') },
+  ];
+
+  const handleSearchChange = (text) => setSearchTerm(text);
+
+  const filterProducts = (products) => {
+    return products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.imgcontainer}>
-          <Image 
-            source={require('../assets/user.png')} 
-            style={styles.image} 
-            onError={(error) => console.log('Image Load Error:', error.nativeEvent.error)} // Log error if image fails to load
-          />
-        </View>
-        <View style={styles.imgcontainer}>
-          <Image 
-            source={require('../assets/cart.png')} 
-            style={styles.image} 
-            onError={(error) => console.log('Image Load Error:', error.nativeEvent.error)} // Log error if image fails to load
-          />
-        </View>
-      </View>
+    <ScrollView style={styles.container}>
       <View style={styles.searchContainer}>
         <Icon name="search1" size={20} color="#000" style={styles.searchIcon} />
         <TextInput 
           style={styles.input} 
           placeholder="Search"
           placeholderTextColor={"#000"}
+          value={searchTerm}
+          onChangeText={handleSearchChange}
         />
       </View>
+
       <View style={styles.categories}>
         <Text style={{fontSize:20, fontWeight: 'bold'}}>Categories</Text>
         <Text>See All</Text>
       </View>
-      <Text>End categoriud</Text>
-      <View style={styles.categories}>
-        <Text style={{fontSize:20, fontWeight: 'bold'}}>Top Selling</Text>
-        <Text>See All</Text>
-      </View>    
-      <Text>End baahan baraanuud</Text>
-      <View style={styles.categories}>
-        <Text style={{fontSize:20, fontWeight: 'bold', color:'#8E6CEF'}}>New In</Text>
-        <Text>See All</Text>
-      </View>
-      <Text>End bas baahan baraanuud</Text>
-      <Text style={styles.text}>Homescreen</Text>
-      <Button
-        title="Go to About"
-        onPress={() => navigation.navigate("About")}
+      
+      {/* FlatList for Categories */}
+      <FlatList 
+        data={categories}
+        horizontal
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.productItem} onPress={() => alert('Category clicked')}>
+            <Image source={item.image} style={styles.categoryImage} />
+            <Text style={styles.categoryName}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
       />
-    </View>
+
+      <Text style={styles.sectionTitle}>Top Selling</Text>
+      {/* FlatList for Top Selling Products */}
+      <FlatList 
+        data={filterProducts(topSelling)}
+        horizontal
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.productItem} onPress={() => alert('Product clicked')}>
+            <Image source={item.image} style={styles.productImage} />
+            <Text style={styles.productName}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+      />
+
+      <Text style={{fontSize:20, fontWeight:'bold', marginLeft: 10, marginTop:20, marginBottom:15, color:'#8E6CEF'}}>New In</Text>
+      {/* FlatList for New In Products */}
+      <FlatList 
+        data={filterProducts(newIn)}
+        horizontal
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.productItem} onPress={() => alert('Product clicked')}>
+            <Image source={item.image} style={styles.productImage} />
+            <Text style={styles.productName}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+      />
+
+    </ScrollView>
   );
 }
 
@@ -103,16 +106,13 @@ const styles = StyleSheet.create({
     marginTop: 40,
     backgroundColor: "#fff",
     padding: 10,
-    justifyContent: "space-between",
     flexDirection: "row",
-  },
-  headerText: {
-    marginLeft: 10,
+    justifyContent: "space-between",
   },
   image: {
     width: 50,
     height: 50,
-    borderRadius: 30,
+    borderRadius: 25,
   },
   text: {
     fontSize: 30,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   categories: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 10
+    padding: 10,
   },
   imgcontainer: {
     borderRadius: 30,
@@ -147,5 +147,36 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     marginRight: 10,
+  },
+  productItem: {
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+  productImage: {
+    width: 159,
+    height: 220,
+    borderRadius: 10,
+  },
+  categoryImage: {
+    width: 56,
+    height: 56,
+    borderRadius: 50,
+  },
+  productName: {
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 5,
+  },
+  categoryName: {
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 5,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 10,
+    marginTop: 20,
+    marginBottom: 15
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import MyButton from '../components/Mybutton';
 import Lottie from 'lottie-react-native';
 
