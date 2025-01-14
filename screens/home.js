@@ -20,7 +20,7 @@ export default function Home({ navigation }) {
   const topSelling = [
     { id: '1', name: "Men's Harrington Jacket", price: '$148.00', image: require('../assets/hoodie.jpg') },
     { id: '2', name: "Max Cirro Men's Slides", price: '$55.00', image: require('../assets/shoes.png') },
-    { id: '3', name: "Product 3", price: '$66.00', image: require('../assets/pants.jpg') },
+    { id: '3', name: "Shoes 37", price: '$66.00', image: require('../assets/pants.jpg') },
   ];
 
   const newIn = [
@@ -74,11 +74,11 @@ export default function Home({ navigation }) {
       </View>
 
       {/* Main Content */}
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Categories */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Categories</Text>
-          <Text style={styles.sectionLink}>See All</Text>
+          <Text style={styles.sectionLink} onPress={()=>navigation.navigate("Categories")}>See All</Text>
         </View>
         <FlatList 
           data={categories}
@@ -90,6 +90,7 @@ export default function Home({ navigation }) {
               <Text style={styles.categoryName}>{item.name}</Text>
             </TouchableOpacity>
           )}
+          showsHorizontalScrollIndicator={false}
         />
 
         {/* Top Selling */}
@@ -107,6 +108,7 @@ export default function Home({ navigation }) {
               onPress={() => alert(`Clicked on ${item.name}`)}
             />
           )}
+          showsHorizontalScrollIndicator={false}
         />
 
         {/* New In */}
@@ -114,17 +116,19 @@ export default function Home({ navigation }) {
           <Text style={[styles.sectionTitle, { color: "#8E6CEF" }]}>New In</Text>
           <Text style={styles.sectionLink}>See All</Text>
         </View>
-        <FlatList 
-          data={newIn}
+        <FlatList
+          data={filterProducts(newIn)}
           horizontal
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.productItem}>
-              <Image source={item.image} style={styles.productImage} />
-              <Text style={styles.productName}>{item.name}</Text>
-            </TouchableOpacity>
+            <ProductCard
+              product={item}
+              onPress={() => alert(`Clicked on ${item.name}`)}
+            />
           )}
+          showsHorizontalScrollIndicator={false}
         />
+
       </ScrollView>
     </View>
   );
@@ -177,6 +181,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   searchContainer: {
+    marginLeft: 20,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F4F4F4',
@@ -217,7 +222,7 @@ const styles = StyleSheet.create({
   },
   sectionLink: {
     fontSize: 14,
-    color: "#8E6CEF",
+    color: "#000",
   },
   categoryItem: {
     alignItems: 'center',

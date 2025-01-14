@@ -17,6 +17,7 @@ export default function Signin({ navigation }) {
         <View style={styles.container1}>
           {/* Email Address Input */}
           <TextInput
+            secureTextEntry={true}
             style={styles.input}
             placeholder="Password"
             placeholderTextColor={"#ddd"}

@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   details: {
+    height:80,
     padding: 10,
-    backgroundColor: "#F4F4F4", // Gray background for the description section
+    backgroundColor: "#F4F4F4", 
   },
   name: {
     fontSize: 14,
@@ -56,11 +57,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   favoriteIcon: {
+    borderRadius: 20,
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.7)", // Blurred background with opacity
-    borderRadius: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.7)", 
     padding: 5,
     elevation: 5,
   },
