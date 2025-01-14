@@ -8,12 +8,14 @@ import {
   Keyboard 
 } from "react-native";
 import MyButton from '../components/Mybutton';
+import BackButton from '../components/Backbutton';
 
 
 export default function Signup({navigation}) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
+        <BackButton navigation={navigation} />
         <Text style={styles.text}>Create Account</Text>
         
         <View style={styles.container1}>

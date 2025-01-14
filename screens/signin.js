@@ -8,8 +8,16 @@ import {
   Keyboard 
 } from "react-native";
 import MyButton from '../components/Mybutton';
+import { useAuth } from '../context/AuthContext';
 
 export default function Signin({ navigation }) {
+  const { signIn } = useAuth();
+
+  const handleSignIn = () => {
+    signIn();
+    navigation.navigate('Home');
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
@@ -26,7 +34,7 @@ export default function Signin({ navigation }) {
           {/* Submit Button */}
           <MyButton
             title="Continue"
-            onPress={() => navigation.navigate("About")}
+            onPress={handleSignIn}
             style={styles.button}
             textStyle={styles.buttonText}
           />

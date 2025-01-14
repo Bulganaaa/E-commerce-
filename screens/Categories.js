@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import MyButton from '../components/Mybutton';
-import Icon from 'react-native-vector-icons/Ionicons';
+import BackButton from '../components/Backbutton';
 
 export default function Categories({ navigation }) {
+  const handleCategoryPress = (category) => {
+    navigation.navigate('CategoryProducts', { category });
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-        <View style={styles.backButtonCircle}>
-          <Icon name="chevron-back" size={24} color="#000" />
-        </View>
-      </TouchableOpacity>
+      <BackButton navigation={navigation} />
       <Text style={styles.text}>
         Shop by Categories
       </Text>
@@ -21,6 +21,7 @@ export default function Categories({ navigation }) {
           textStyle={styles.buttonText}
           image={require('../assets/hoodie.jpg')}
           forwardIcon="arrow-right"
+          onPress={() => handleCategoryPress('Hoodies')}
         />
         <MyButton
           title="Pants"
@@ -28,6 +29,7 @@ export default function Categories({ navigation }) {
           textStyle={styles.buttonText}
           image={require('../assets/pants.jpg')}
           forwardIcon="arrow-right"
+          onPress={() => handleCategoryPress('Pants')}
         />
         <MyButton
           title="Shoes"
@@ -35,6 +37,7 @@ export default function Categories({ navigation }) {
           textStyle={styles.buttonText}
           image={require('../assets/shoes.png')}
           forwardIcon="arrow-right"
+          onPress={() => handleCategoryPress('Shoes')}
         />
         <MyButton
           title="Bags"
@@ -42,6 +45,7 @@ export default function Categories({ navigation }) {
           textStyle={styles.buttonText}
           image={require('../assets/bags.jpg')}
           forwardIcon="arrow-right"
+          onPress={() => handleCategoryPress('Bags')}
         />
         <MyButton
           title="Accessories"
@@ -49,6 +53,7 @@ export default function Categories({ navigation }) {
           textStyle={styles.buttonText}
           image={require('../assets/glasses.jpg')}
           forwardIcon="arrow-right"
+          onPress={() => handleCategoryPress('Accessories')}
         />
       </View>
     </View>
@@ -59,17 +64,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  backButton: {
-    position: 'absolute',
-    top: 40,
-    left: 20,
-    zIndex: 1,
-  },
-  backButtonCircle: {
-    backgroundColor: '#F4F4F4',
-    borderRadius: 20,
-    padding: 10,
   },
   text: {
     marginTop: 100,

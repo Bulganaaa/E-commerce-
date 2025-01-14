@@ -16,7 +16,7 @@ export default function About({ navigation }) {
     { label: "55-64", value: "55-64" },
     { label: "65+", value: "65+" },
   ];
-
+                                                                                                                                                                                                                         
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Tell us About yourself</Text>

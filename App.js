@@ -11,6 +11,7 @@ import Profile from './screens/Profile';
 import Notification from './screens/Notification';
 import Cart from './screens/Cart';
 import Categories from './screens/Categories';
+import CategoryProducts from './screens/CategoryProducts';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
@@ -66,17 +67,17 @@ function AuthStack() {
       <Stack.Screen name="Signin" component={Signin} />
       <Stack.Screen name="Forgot" component={Forgot} />
       <Stack.Screen name="Sent" component={Sent} />
-      <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
 }
 
 function AppStack() {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="About" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={MainTabs} />
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="CategoryProducts" component={CategoryProducts}/>
     </Stack.Navigator>
   );
 }
