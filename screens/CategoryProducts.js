@@ -5,15 +5,14 @@ import ProductCard from '../components/ProductCard';
 
 const products = [
   { id: '1', name: 'Product 1', price: '$20.00', image: require('../assets/hoodie.jpg') },
-  { id: '2', name: 'Product 2', price: '$25.00', image: require('../assets/pants.jpg') },
-  { id: '3', name: 'Product 3', price: '$30.00', image: require('../assets/shoes.png') },
-  { id: '4', name: 'Product 4', price: '$35.00', image: require('../assets/bags.jpg') },
-  { id: '5', name: 'Product 5', price: '$40.00', image: require('../assets/glasses.jpg') },
-  { id: '6', name: 'Product 6', price: '$20.00', image: require('../assets/hoodie.jpg') },
-  { id: '7', name: 'Product 7', price: '$25.00', image: require('../assets/pants.jpg') },
-  { id: '8', name: 'Product 8', price: '$30.00', image: require('../assets/shoes.png') },
-  { id: '9', name: 'Product 9', price: '$35.00', image: require('../assets/bags.jpg') },
-  { id: '10', name: 'Product 10', price: '$40.00', image: require('../assets/glasses.jpg') },
+  { id: '2', name: 'Product 2', price: '$25.00', image: require('../assets/hoodie1.jpg') },
+  { id: '3', name: 'Product 3', price: '$30.00', image: require('../assets/hoodie2.jpg') },
+  { id: '4', name: 'Product 4', price: '$35.00', image: require('../assets/hoodie3.jpg') },
+  { id: '5', name: 'Product 5', price: '$40.00', image: require('../assets/hoodie4.jpg') },
+  { id: '6', name: 'Product 6', price: '$20.00', image: require('../assets/hoodie5.jpg') },
+  { id: '7', name: 'Product 7', price: '$25.00', image: require('../assets/hoodie6.jpg') },
+  { id: '8', name: 'Product 8', price: '$30.00', image: require('../assets/hoodie7.jpg') },
+  { id: '9', name: 'Product 9', price: '$35.00', image: require('../assets/hoodie8.jpg') },
   // Add more products as needed
 ];
 

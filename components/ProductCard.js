@@ -17,7 +17,7 @@ const ProductCard = ({ product, onPress }) => {
         <Text style={styles.price}>{product.price}</Text>
       </View>
       <TouchableOpacity style={styles.favoriteIcon} onPress={toggleFavorite}>
-        <Icon name="heart" size={20} color={isFavorite ? "red" : "#ddd"} />
+        <Icon name="heart" size={20} color={isFavorite ? "#FA3636" : "#ddd"} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -57,13 +57,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   favoriteIcon: {
-    borderRadius: 20,
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.7)", 
-    padding: 5,
-    elevation: 5,
   },
 });
 
