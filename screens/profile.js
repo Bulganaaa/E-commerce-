@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 import MyButton from '../components/Mybutton';
+import { useAuth } from '../context/AuthContext';
 
 export default function Profile({navigation}) {
   const user = {
@@ -10,6 +11,11 @@ export default function Profile({navigation}) {
     address: "123 Main St, Cityville, ABC",
     profilePic: require('../assets/profile.jpg'), 
   };
+    const { signOut } = useAuth();
+  
+    const handleSignOut = () => {
+      signOut();
+    };
 
   return (
     <View style={styles.container}>
@@ -35,7 +41,7 @@ export default function Profile({navigation}) {
         <MyButton title="Support" onPress={() => navigation.navigate('Support')} style={styles.buttons} textStyle={styles.buttontext}/>
       </View>
 
-      <Text style={styles.logout} onPress={() => navigation.navigate("Login")}>Sign Out</Text>
+      <Text style={styles.logout} onPress={handleSignOut}>Sign Out</Text>
     </View>
   );
 }

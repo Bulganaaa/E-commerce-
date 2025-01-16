@@ -24,9 +24,9 @@ export default function Home({ navigation }) {
   ];
 
   const newIn = [
-    { id: '1', name: 'New Product 1', image: require('../assets/hoodie.jpg') },
-    { id: '2', name: 'New Product 2', image: require('../assets/pants.jpg') },
-    { id: '3', name: 'New Product 3', image: require('../assets/shoes.png') },
+    { id: '1', name: 'New Product 1', price: '$20.00', image: require('../assets/hoodie.jpg') },
+    { id: '2', name: 'New Product 2', price: '$25.00', image: require('../assets/pants.jpg') },
+    { id: '3', name: 'New Product 3', price: '$30.00', image: require('../assets/shoes.png') },
   ];
 
   const handleSearchChange = (text) => setSearchTerm(text);
@@ -70,6 +70,7 @@ export default function Home({ navigation }) {
           placeholderTextColor={"#000"}
           value={searchTerm}
           onChangeText={handleSearchChange}
+          onFocus={() => navigation.navigate('Search')} 
         />
       </View>
 
@@ -105,7 +106,7 @@ export default function Home({ navigation }) {
           renderItem={({ item }) => (
             <ProductCard
               product={item}
-              onPress={() => alert(`Clicked on ${item.name}`)}
+              navigation={navigation}
             />
           )}
           showsHorizontalScrollIndicator={false}
@@ -123,7 +124,55 @@ export default function Home({ navigation }) {
           renderItem={({ item }) => (
             <ProductCard
               product={item}
-              onPress={() => alert(`Clicked on ${item.name}`)}
+              navigation={navigation}
+            />
+          )}
+          showsHorizontalScrollIndicator={false}
+        />
+         <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle, { color: "#8E6CEF" }]}>New In</Text>
+          <Text style={styles.sectionLink}>See All</Text>
+        </View>
+        <FlatList
+          data={filterProducts(newIn)}
+          horizontal
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <ProductCard
+              product={item}
+              navigation={navigation}
+            />
+          )}
+          showsHorizontalScrollIndicator={false}
+        />
+         <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle]}>Men</Text>
+          <Text style={styles.sectionLink}>See All</Text>
+        </View>
+        <FlatList
+          data={filterProducts(newIn)}
+          horizontal
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <ProductCard
+              product={item}
+              navigation={navigation}
+            />
+          )}
+          showsHorizontalScrollIndicator={false}
+        />
+         <View style={styles.sectionHeader}>
+          <Text style={[styles.sectionTitle]}>Woman</Text>
+          <Text style={styles.sectionLink}>See All</Text>
+        </View>
+        <FlatList
+          data={filterProducts(newIn)}
+          horizontal
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <ProductCard
+              product={item}
+              navigation={navigation}
             />
           )}
           showsHorizontalScrollIndicator={false}

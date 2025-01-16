@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 
-const ProductCard = ({ product, onPress }) => {
+const ProductCard = ({ product,navigation }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleFavorite = () => {
@@ -10,7 +10,7 @@ const ProductCard = ({ product, onPress }) => {
   };
 
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity style={styles.card} onPress={()=>navigation.navigate("ProductDetail")}>
       <Image source={product.image} style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.name}>{product.name}</Text>

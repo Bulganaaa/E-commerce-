@@ -20,7 +20,7 @@ export default function CategoryProducts({ navigation, route }) {
   const { category } = route.params;
 
   const renderProduct = ({ item }) => (
-    <ProductCard product={item} onPress={() => navigation.navigate('ProductDetails', { product: item })} />
+    <ProductCard product={item} navigation={navigation} />
   );
 
   const ItemSeparator = () => <View style={{ height: 20 }} />;
@@ -29,6 +29,7 @@ export default function CategoryProducts({ navigation, route }) {
     <View style={styles.container}>
       <BackButton navigation={navigation} />
       <Text style={styles.header}>{category}</Text>
+      <View style={styles.listcontainer}>
       <FlatList
         data={products}
         renderItem={renderProduct}
@@ -36,7 +37,9 @@ export default function CategoryProducts({ navigation, route }) {
         numColumns={2}
         contentContainerStyle={styles.list}
         ItemSeparatorComponent={ItemSeparator}
+        showsVerticalScrollIndicator={false}
       />
+      </View>
     </View>
   );
 }
@@ -58,4 +61,7 @@ const styles = StyleSheet.create({
   list: {
     justifyContent: 'center',
   },
+  listcontainer:{
+    alignItems: 'center'
+  }
 });

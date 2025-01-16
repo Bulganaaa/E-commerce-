@@ -11,7 +11,9 @@ import Profile from './screens/Profile';
 import Notification from './screens/Notification';
 import Cart from './screens/Cart';
 import Categories from './screens/Categories';
+import Search from './screens/Search'
 import CategoryProducts from './screens/CategoryProducts';
+import ProductDetail from './screens/ProductDetail';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
@@ -78,6 +80,8 @@ function AppStack() {
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="About" component={About} />
       <Stack.Screen name="CategoryProducts" component={CategoryProducts}/>
+      <Stack.Screen name="ProductDetail" component={ProductDetail}/>
+      <Stack.Screen name="Search" component={Search}/>
     </Stack.Navigator>
   );
 }

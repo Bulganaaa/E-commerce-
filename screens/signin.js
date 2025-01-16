@@ -15,7 +15,6 @@ export default function Signin({ navigation }) {
 
   const handleSignIn = () => {
     signIn();
-    navigation.navigate('Home');
   };
 
   return (
